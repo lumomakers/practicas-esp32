@@ -7,6 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Prácticas con ESP32'
+html_logo = "_static/general/logo_web.png"
 copyright = '2026, Paco Avis'
 author = 'Paco Avis'
 release = 'S'
