@@ -10,6 +10,10 @@ Si la miras de cerca, verás que parece una pequeña ciudad llena de carreteras 
 
 El Cerebro: El Chip ESP32
 =========================
+.. image:: _static/capitulo1/placa_steamakers.png
+   :alt: Detalle de la placa
+   :align: center
+   :width: 400px
 
 El cuadrado negro que ves en el centro es el **ESP32**, el auténtico cerebro de la placa. Es el encargado de pensar, hacer matemáticas súper rápido y obedecer las órdenes que tú le escribas desde la computadora.
 
