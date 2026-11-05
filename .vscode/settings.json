@@ -1,0 +1,19 @@
+{
+  "esbonio.sphinx.pythonCommand": [
+    "${venv:.venv}"
+  ],
+
+  "esbonio.sphinx.buildArguments": [
+    "-b",
+    "html",
+    "source",
+    "${defaultBuildDir}"
+  ],
+
+  "esbonio.sphinx.buildTriggers": {
+    "onSave": true,
+    "onChange": 2.0
+  },
+
+  "esbonio.preview.synchronizeScroll": "bothWays"
+}
