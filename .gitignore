@@ -1,0 +1,12 @@
+# Entorno virtual
+.venv/
+
+# Archivos temporales de Sphinx
+/_build/
+
+# Archivos temporales de Python
+__pycache__/
+*.py[cod]
+
+# Archivos de macOS
+.DS_Store
