@@ -21,7 +21,7 @@ El Cerebro: El Chip ESP32
    :align: center
    :width: 400px
    
-El cuadrado negro que ves en el centro es el **ESP32**, el auténtico cerebro de la placa. Es el encargado de pensar, hacer matemáticas súper rápido y obedecer las órdenes que tú le escribas desde la computadora.
+El cuadrado metálico que ves en el **centro-derecha** es el **ESP32**, el auténtico cerebro de la placa. Es el encargado de pensar, hacer matemáticas súper rápido y obedecer las órdenes que tú le escribas desde la computadora.
 
 .. note::
    **¡Un Cerebro con Superpoderes!** 🧠
@@ -30,7 +30,7 @@ El cuadrado negro que ves en el centro es el **ESP32**, el auténtico cerebro de
 Los Músculos: Los Pines de Conexión (GPIO)
 ===========================================
 
-¿Ves esas filas de agujeros dorados o patitas plateadas en los bordes? Se llaman **Pines GPIO** (Pines de Entrada y Salida de Propósito General). 
+¿Ves esas filas de agujeros amarillos en los bordes? Se llaman **Pines GPIO** (Pines de Entrada y Salida de Propósito General). 
 
 Son los "músculos" y los "sentidos" de nuestra placa. Gracias a ellos podemos conectar cables para:
 
@@ -39,7 +39,7 @@ Son los "músculos" y los "sentidos" de nuestra placa. Gracias a ellos podemos c
 
 .. warning::
    **¡Cuidado con la electricidad!** ⚡
-   La placa funciona con un voltaje muy bajo y seguro para ti (3.3 Voltios o 5 Voltios). Pero recuerda: **¡nunca conectes cables a lo loco!** Si juntas la patita de energía (VCC) con la de tierra (GND) directamente sin pasar por un componente, causarás un cortocircuito. ¡Sigue siempre los esquemas como un auténtico profesional!
+   La placa funciona con un voltaje muy bajo y seguro para ti (3.3 Voltios o 5 Voltios). Pero recuerda: **¡nunca conectes cables a lo loco!** Si juntas la patita de energía (VCC) con la de tierra (GND) directamente sin pasar por un componente, causarás un **cortocircuito**. ¡Sigue siempre los esquemas como un auténtico profesional!
 
 Los Sentidos Integrados de STEAMakers
 =====================================
