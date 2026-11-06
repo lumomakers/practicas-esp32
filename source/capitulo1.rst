@@ -1,17 +1,22 @@
 ====================================================
-🚀 Capítulo 1: El Mapa del Tesoro - Tu Placa ESP32
+Capítulo 1: El Mapa del Tesoro - Tu Placa ESP32
 ====================================================
 
-¡Bienvenidos, ingenieros e ingenieras! 🛠️ 
+¡Bienvenidos, ingenieros e ingenieras!
 
 Hoy vamos a conocer al protagonista de todas nuestras aventuras tecnológicas: la placa de desarrollo **STEAMakers**. Esta placa tiene un superpoder oculto: lleva dentro un chip llamado **ESP32**. 
+
+.. image:: _static/capitulo1/Microciudad.png
+   :alt: Microciudad
+   :align: center
+   :width: 70%
 
 Si la miras de cerca, verás que parece una pequeña ciudad llena de carreteras brillantes y mini-componentes. ¡Vamos a descubrir qué es cada cosa!
 
 El Cerebro: El Chip ESP32
 =========================
 
-.. image:: _static/capitulo1/placa_steamakers.png
+.. image:: /_static/capitulo1/placa_steamakers.png
    :alt: Detalle de la placa
    :align: center
    :width: 400px
