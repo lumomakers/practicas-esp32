@@ -63,7 +63,12 @@ La placa está basada en el microcontrolador ESP32-WROOM-32 y sus principales es
 Los Músculos: Los Pines de Conexión (GPIO)
 ===========================================
 
-¿Ves esas filas de agujeros amarillos en los bordes? Se llaman **Pines GPIO** (Pines de Entrada y Salida de Propósito General). 
+¿Ves esas filas de agujeros amarillos en los bordes? Se llaman pines **GPIO** (**General Purpose Input/Output**, *Entrada/Salida de Propósito General*). 
+
+.. image:: /_static/capitulo1/Pinout-ESP32.png
+   :alt: Detalle de la placa
+   :align: center
+   :scale: 100%
 
 Son los "músculos" y los "sentidos" de nuestra placa. Gracias a ellos podemos conectar cables para:
 
@@ -74,10 +79,7 @@ Son los "músculos" y los "sentidos" de nuestra placa. Gracias a ellos podemos c
    **¡Cuidado con la electricidad!** ⚡
    La placa funciona con un voltaje muy bajo y seguro para ti (3.3 Voltios o 5 Voltios). Pero recuerda: **¡nunca conectes cables a lo loco!** Si juntas la patita de energía (VCC) con la de tierra (GND) directamente sin pasar por un componente, causarás un **cortocircuito**. ¡Sigue siempre los esquemas como un auténtico profesional!
 
-Pines en ESP32
-=====================================
-
-En general los pines en ESP32 son de tipo **GPIO** (**General Purpose Input/Output**, *Entrada/Salida de Propósito General*). Algunos pines GPIO pueden tener un comportamiento no esperado durante el arranque del sistema o en el reinicio del mismo. Esto se debe a que durante el arranque de la placa ESP32 se deben realizar procesos internos que ponen en alto ciertos pines o incluso hacen que emitan señales, y esto puede provocar esos efectos no deseados.
+Algunos pines GPIO pueden tener un comportamiento no esperado durante el arranque del sistema o en el reinicio del mismo. Esto se debe a que durante el arranque de la placa ESP32 se deben realizar procesos internos que ponen en alto ciertos pines o incluso hacen que emitan señales, y esto puede provocar esos efectos no deseados.
 
 El **pin GPIO1** del microcontrolador es el pin Tx del puerto UART de depuración y cuando la placa arranca, se reinicia o cuando nosotros hacemos uso del puerto serie, este pin emite datos. Por este motivo **es un pin que no conviene usar como entrada o salida**.
 
