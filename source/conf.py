@@ -30,3 +30,4 @@ html_static_path = ['_static']
 
 # Ocultar el enlace "Ver código fuente de la página"
 html_show_sourcelink = False
+
