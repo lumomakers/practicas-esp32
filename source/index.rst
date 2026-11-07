@@ -14,4 +14,5 @@ Prácticas con ESP32
    :caption: Contenidos:
 
    capitulo1
+   capitulo2
 

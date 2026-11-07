@@ -1,0 +1,15 @@
+{
+  "Bloque Python para Sphinx": {
+    "scope": "restructuredtext",
+    "prefix": "pycode",
+    "body": [
+      ".. code-block:: python",
+      "   :caption: ${1:Título del programa}",
+      "   :linenos:",
+      "",
+      "   ${0:# Escribe aquí tu código}",
+      ""
+    ],
+    "description": "Inserta un bloque Python con título y números de línea"
+  }
+}
