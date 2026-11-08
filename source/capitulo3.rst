@@ -11,9 +11,9 @@ Para leer un LDR, no basta con conectarlo directamente al pin correspondiente (n
 
 
 .. warning::
-    - **VCC (3.3V)** Patilla 1 de la LDR.
-    - Punto Medio Patilla 2 de LDR + Resistencia 10k + Pin ADC.
-    - **GND** El otro extremo de la resistencia 10k.
+    - **VCC (3.3V):** Patilla 1 de la LDR.
+    - **Punto Medio:** Patilla 2 de LDR + Resistencia 10k + Pin ADC.
+    - **GND:** El otro extremo de la resistencia 10k.
 
 El esquema
 -------------
