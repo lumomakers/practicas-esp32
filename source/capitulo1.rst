@@ -1,5 +1,5 @@
 ====================================================
-Capítulo 1: Tu Placa ESP32
+Nuestra placa ESP32
 ====================================================
 
 ¡Bienvenidos, ingenieros e ingenieras!
