@@ -20,6 +20,15 @@ El esquema
         :align: center
         :width: 90%
 
+En el caso de que dispongamos de elementos de la marca KeyStudio podríamos montar el circuito de esta manera. Si observas verás que usamos un cable extra, es para proporcionar corriente al led, conectado al pin **5v**. Además ya no usamos una resistencia para proteger al led porque viene incorporada en la propia PCB de KeyStudio, esto está bien pero nos quita libertad a la hora de diseñar nuestros propios circuitos.
+
+.. container:: imagen-separada
+
+    .. image:: /_static/capitulo2/LED_KeyStudio.png
+        :alt: Detalle de la placa
+        :align: center
+        :width: 90%
+
 El programa
 -------------
 
@@ -86,6 +95,14 @@ Asegúrate de conectar bien los cables. Si es necesario haz click en la imagen p
 .. container:: imagen-separada
 
     .. image:: /_static/capitulo2/ESP32-Pulsador.png
+        :align: center
+        :width: 90%
+
+El siguiente esquema usa el componente **botón de KeyStudio**:
+
+.. container:: imagen-separada
+
+    .. image:: /_static/capitulo2/Btn_Keystudio.png
         :align: center
         :width: 90%
 
