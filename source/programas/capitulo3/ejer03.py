@@ -1,17 +1,3 @@
-'''
----------------------------------------------------------------------
-Programa: ejer03.py
-
-Placa: ESP32 STEAMakers
-
-Descripción: Usando sensor LDR
-
-Observaciones:
-
-    GPIO ADC -------> 34 
----------------------------------------------------------------------
-'''
-
 from machine import Pin, ADC
 from time import sleep_ms
  

@@ -1,18 +1,3 @@
-'''
----------------------------------------------------------------------
-Programa: ejer03_v2.py
-
-Placa: ESP32 STEAMakers
-
-Descripción: Usando sensor LDR para controlar una led
-
-Observaciones:
-
-    GPIO ADC -------> 34
-    GPIO del led ---> 26
----------------------------------------------------------------------
-'''
-
 from machine import Pin, ADC
 from time import sleep_ms
  
