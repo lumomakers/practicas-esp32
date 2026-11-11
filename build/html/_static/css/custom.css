@@ -1,0 +1,100 @@
+.rst-content .imagen-separada {
+    margin-bottom: 40px; 
+}
+
+/* Títulos principales */
+.rst-content h1 {
+    color: #1763A6;
+}
+
+/* Títulos de sección */
+.rst-content h2 {
+    color: #16827D;
+}
+
+/* Títulos de subsección */
+.rst-content h3 {
+    color: #8751A3;
+}
+
+/* Títulos de cuarto nivel */
+.rst-content h4 {
+    color: #4B5563;
+}
+
+/* Separadores horizontales del contenido */
+.rst-content hr {
+    border: 0;
+    border-top: 1px solid #a4d1f8;
+    margin: 30px 0;
+
+/* ----------------------------------- */
+/* Estructura para mostrar imágenes junto a texto como los buzzers */
+/* ----------------------------------- */
+/* Ficha de componente */
+
+.ficha-componente {
+    display: grid;
+    grid-template-columns: 170px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+
+    padding: 24px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Eliminar el borde de la última ficha */
+
+.ficha-componente:last-child {
+    border-bottom: none;
+}
+
+/* Marco de la imagen */
+
+.ficha-foto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 170px;
+    height: 170px;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 18px;
+    background: white;
+
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Imagen */
+
+.ficha-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Título */
+
+.ficha-texto p.rubric {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+}
+
+/* Descripción */
+
+.ficha-texto p {
+    line-height: 1.65;
+    margin: 0 0 12px;
+}
+
+/* Adaptación a pantallas pequeñas */
+
+@media (max-width: 600px) {
+    .ficha-componente {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}

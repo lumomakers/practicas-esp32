@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo Machine &mdash; documentación de Prácticas con ESP32 - S</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=ea439221" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=481003d9"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/translations.js?v=f85f4cfb"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Módulo Time" href="apendice2.html" />
+    <link rel="prev" title="4. El Buzzer (o zumbador)" href="capitulo4.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Prácticas con ESP32
+              <img src="_static/logo_web.png" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="capitulo1.html">1. Nuestra placa ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo2.html">2. Primeros programas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo3.html">3. Sensor LDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo4.html">4. El Buzzer (o zumbador)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apéndices:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Módulo Machine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#que-es-machine">¿Qué es <cite>machine</cite>?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#componentes-principales">Componentes principales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tabla-de-consulta-rapida">Tabla de consulta rápida</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ejemplo">Ejemplo:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pin-encender-y-apagar-un-led"><strong>Pin</strong>: encender y apagar un LED</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apendice2.html">Módulo Time</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Prácticas con ESP32</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Módulo Machine</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="modulo-machine">
+<h1>Módulo Machine<a class="headerlink" href="#modulo-machine" title="Link to this heading"></a></h1>
+<section id="que-es-machine">
+<h2>¿Qué es <cite>machine</cite>?<a class="headerlink" href="#que-es-machine" title="Link to this heading"></a></h2>
+<p><strong>machine</strong> es un módulo de MicroPython que permite comunicarse con los componentes físicos de un microcontrolador: sus pines, conversores analógico-digitales, temporizadores y buses de comunicación.</p>
+<p>Podemos imaginarlo como un puente entre <strong>las instrucciones del programa</strong> y <strong>el hardware</strong> (LED, pulsadores, sensores, motores y pantallas).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">machine</span>
+</pre></div>
+</div>
+<p>También podemos importar únicamente lo que vayamos a utilizar:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">PWM</span><span class="p">,</span> <span class="n">ADC</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>La disponibilidad de clases, pines y funciones depende de la placa y de la versión o puerto de MicroPython. Los números de GPIO de los ejemplos son orientativos: consulta el pinout y el firmware de tu placa antes de conectar componentes.</p>
+</div>
+</section>
+<section id="componentes-principales">
+<h2>Componentes principales<a class="headerlink" href="#componentes-principales" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Clase o función</p></th>
+<th class="head"><p>¿Para qué sirve?</p></th>
+<th class="head"><p>Ejemplo de uso</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>Pin</cite></p></td>
+<td><p>Configurar entradas y salidas digitales</p></td>
+<td><p>LED y pulsador</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>PWM</cite></p></td>
+<td><p>Generar señales de modulación por ancho de pulso</p></td>
+<td><p>Brillo de LED o señal de servo</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>ADC</cite></p></td>
+<td><p>Leer señales analógicas</p></td>
+<td><p>Potenciómetro y sensor analógico</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>Timer</cite></p></td>
+<td><p>Programar acciones temporizadas</p></td>
+<td><p>Ejecución periódica</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>UART</cite></p></td>
+<td><p>Comunicación serie</p></td>
+<td><p>Comunicación con otros dispositivos</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>I2C</cite></p></td>
+<td><p>Comunicación con sensores y pantallas</p></td>
+<td><p>Pantalla o sensor I²C</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>SPI</cite></p></td>
+<td><p>Comunicación serie síncrona</p></td>
+<td><p>Pantalla o memoria SPI</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>RTC</cite></p></td>
+<td><p>Acceso al reloj de tiempo real, si está disponible</p></td>
+<td><p>Fecha y hora</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>freq()</cite></p></td>
+<td><p>Consultar o ajustar la frecuencia de CPU, según el puerto</p></td>
+<td><p>Gestión del microcontrolador</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>reset()</cite></p></td>
+<td><p>Reiniciar la placa</p></td>
+<td><p>Reinicio por software</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>unique_id()</cite></p></td>
+<td><p>Obtener el identificador de la placa</p></td>
+<td><p>Identificación de dispositivo</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tabla-de-consulta-rapida">
+<h2>Tabla de consulta rápida<a class="headerlink" href="#tabla-de-consulta-rapida" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Objetivo</p></th>
+<th class="head"><p>Herramienta</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Encender o apagar un LED</p></td>
+<td><p>Pin(…, Pin.OUT)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Detectar un pulsador</p></td>
+<td><p>Pin(…, Pin.IN)</p></td>
+</tr>
+<tr class="row-even"><td><p>Leer un potenciómetro</p></td>
+<td><p>ADC(…)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Variar el brillo de un LED</p></td>
+<td><p>PWM(…)</p></td>
+</tr>
+<tr class="row-even"><td><p>Generar una señal de control para servo</p></td>
+<td><p>PWM(…)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Comunicarse por puerto serie</p></td>
+<td><p>UART(…)</p></td>
+</tr>
+<tr class="row-even"><td><p>Conectar sensores I²C</p></td>
+<td><p>I2C(…)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Conectar dispositivos SPI</p></td>
+<td><p>SPI(…)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ejemplo">
+<h2>Ejemplo:<a class="headerlink" href="#ejemplo" title="Link to this heading"></a></h2>
+<section id="pin-encender-y-apagar-un-led">
+<h3><strong>Pin</strong>: encender y apagar un LED<a class="headerlink" href="#pin-encender-y-apagar-un-led" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
+<span class="linenos"> 2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span> <span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos"> 7</span>     <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 8</span>     <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 9</span>     <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">10</span>     <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<ul class="simple">
+<li><p><strong>Pin(15, Pin.OUT)</strong> configura el GPIO 15 como salida.</p></li>
+<li><p><strong>value(1)</strong> establece un nivel lógico alto.</p></li>
+<li><p><strong>value(0)</strong> establece un nivel lógico bajo.</p></li>
+<li><p><strong>sleep(1)</strong> espera un segundo.</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="capitulo4.html" class="btn btn-neutral float-left" title="4. El Buzzer (o zumbador)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="apendice2.html" class="btn btn-neutral float-right" title="Módulo Time" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2026, Paco Avis.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

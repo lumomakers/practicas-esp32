@@ -1,0 +1,161 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. El Buzzer (o zumbador) &mdash; documentación de Prácticas con ESP32 - S</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=ea439221" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=481003d9"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/translations.js?v=f85f4cfb"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Módulo Machine" href="apendice1.html" />
+    <link rel="prev" title="3. Sensor LDR" href="capitulo3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Prácticas con ESP32
+              <img src="_static/logo_web.png" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="capitulo1.html">1. Nuestra placa ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo2.html">2. Primeros programas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo3.html">3. Sensor LDR</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. El Buzzer (o zumbador)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#que-tipos-de-buzzer-existen">4.1. ¿Qué tipos de buzzer existen?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#buzzer-activo-y-pasivo">4.1.1. Buzzer activo y pasivo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apéndices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apendice1.html">Módulo Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apendice2.html">Módulo Time</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Prácticas con ESP32</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>El Buzzer (o zumbador)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="el-buzzer-o-zumbador">
+<h1><span class="section-number">4. </span>El Buzzer (o zumbador)<a class="headerlink" href="#el-buzzer-o-zumbador" title="Link to this heading"></a></h1>
+<p>Un buzzer o zumbador es un pequeño dispositivo electrónico capaz de producir sonidos. En robótica podemos utilizarlo para generar alarmas, avisos, señales acústicas e incluso melodías.</p>
+<p>Por ejemplo, podemos programar nuestro robot para que emita un pitido cuando detecte un obstáculo a menos de 20 cm.</p>
+<section id="que-tipos-de-buzzer-existen">
+<h2><span class="section-number">4.1. </span>¿Qué tipos de buzzer existen?<a class="headerlink" href="#que-tipos-de-buzzer-existen" title="Link to this heading"></a></h2>
+<p>Lo primero que debemos saber es que no todos los buzzers se controlan igual.</p>
+<section id="buzzer-activo-y-pasivo">
+<h3><span class="section-number">4.1.1. </span>Buzzer activo y pasivo<a class="headerlink" href="#buzzer-activo-y-pasivo" title="Link to this heading"></a></h3>
+<div class="ficha-componente docutils container">
+<div class="ficha-foto docutils container">
+<img alt="Buzzer activo" src="_images/buzzer_activo.jpeg" />
+</div>
+<div class="ficha-texto docutils container">
+<p class="rubric">Buzzer activo</p>
+<p>Incorpora un oscilador que genera el sonido.
+Normalmente basta con activar su alimentación
+para que emita un pitido de frecuencia fija.</p>
+<p>En MicroPython podemos controlarlo con
+<code class="docutils literal notranslate"><span class="pre">machine.Pin</span></code>, siempre que sea compatible
+eléctricamente con el GPIO.</p>
+</div>
+</div>
+<div class="ficha-componente docutils container">
+<div class="ficha-foto docutils container">
+<img alt="Buzzer pasivo" src="_images/buzzer_pasivo.jpeg" />
+</div>
+<div class="ficha-texto docutils container">
+<p class="rubric">Buzzer pasivo</p>
+<p>Necesita recibir una señal periódica para
+generar sonido. Podemos modificar la frecuencia
+de esa señal para producir distintas notas.</p>
+<p>En MicroPython lo controlamos normalmente
+con <code class="docutils literal notranslate"><span class="pre">machine.PWM</span></code>.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="capitulo3.html" class="btn btn-neutral float-left" title="3. Sensor LDR" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="apendice1.html" class="btn btn-neutral float-right" title="Módulo Machine" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2026, Paco Avis.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3. Sensor LDR &mdash; documentación de Prácticas con ESP32 - S</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=ea439221" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=481003d9"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/translations.js?v=f85f4cfb"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="4. El Buzzer (o zumbador)" href="capitulo4.html" />
+    <link rel="prev" title="2. Primeros programas" href="capitulo2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Prácticas con ESP32
+              <img src="_static/logo_web.png" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="capitulo1.html">1. Nuestra placa ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo2.html">2. Primeros programas</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Sensor LDR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#el-esquema">3.1. El esquema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#el-programa">3.2. El programa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#el-interruptor-crepuscular">3.3. El interruptor crepuscular</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo4.html">4. El Buzzer (o zumbador)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apéndices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apendice1.html">Módulo Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apendice2.html">Módulo Time</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Prácticas con ESP32</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>Sensor LDR</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sensor-ldr">
+<h1><span class="section-number">3. </span>Sensor LDR<a class="headerlink" href="#sensor-ldr" title="Link to this heading"></a></h1>
+<p>La fotoresistencia (LDR) pertenece a la familia de <strong>sensores anlógicos</strong>, es decir, aquellos que nos permiten medir magnitudes que varían suavemente: la intensidad de luz, la temperatura, la humedad del suelo, la fuerza ejercida.
+La mayoría de estos sensores básicos son <strong>Resistivos</strong>. Esto significa que varían su resistencia eléctrica según la magnitud física, en este caso nuestra <strong>LDR (Fotoresistencia)</strong> cuanta <strong>menos luz</strong> reciba <strong>más resistencia</strong> ejercerá al paso de la corriente.</p>
+<p>Para leer un LDR, no basta con conectarlo directamente al pin correspondiente (no a uno cualquiera); necesitas medir cómo cambia el valor de su resistencia. Para ello, creamos un <strong>divisor de tensión</strong> añadiendo una resistencia normal (generalmente de 10KΩ) y se lee la variación de voltaje resultante utilizando el convertidor analógico-digital (ADC) de la placa.</p>
+<p>¿Y por qué? pues porque el ADC de nuestra placa solo sabe medir voltaje, no resistencia. No puedes conectar una LDR directamente entre el pin y GND. No funcionará.</p>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<ul class="simple">
+<li><p><strong>VCC (3.3V):</strong> Patilla 1 de la LDR.</p></li>
+<li><p><strong>Punto Medio:</strong> Patilla 2 de LDR + Resistencia 10k + Pin ADC.</p></li>
+<li><p><strong>GND:</strong> El otro extremo de la resistencia 10k.</p></li>
+</ul>
+</div>
+<section id="el-esquema">
+<h2><span class="section-number">3.1. </span>El esquema<a class="headerlink" href="#el-esquema" title="Link to this heading"></a></h2>
+<div class="imagen-separada docutils container">
+<a class="reference internal image-reference" href="_images/LDR.png"><img alt="_images/LDR.png" class="align-center" src="_images/LDR.png" style="width: 90%;" />
+</a>
+</div>
+<p>En el caso de que dispongamos de elementos de la marca KeyStudio podríamos montar el circuito de esta manera:</p>
+<div class="imagen-separada docutils container">
+<a class="reference internal image-reference" href="_images/LDR_KeyStudio.png"><img alt="_images/LDR_KeyStudio.png" class="align-center" src="_images/LDR_KeyStudio.png" style="width: 90%;" />
+</a>
+</div>
+</section>
+<section id="el-programa">
+<h2><span class="section-number">3.2. </span>El programa<a class="headerlink" href="#el-programa" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">ADC</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep_ms</span>
+<span class="linenos"> 3</span> 
+<span class="linenos"> 4</span><span class="n">ldr</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="mi">34</span><span class="p">))</span>
+<span class="linenos"> 5</span> 
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos"> 8</span>    <span class="c1"># read_u16 devuelve el valor crudo entre 0 y 65535</span>
+<span class="linenos"> 9</span>    <span class="n">nivel_luz</span> <span class="o">=</span> <span class="n">ldr</span><span class="o">.</span><span class="n">read_u16</span><span class="p">()</span>
+<span class="linenos">10</span>    
+<span class="linenos">11</span>    <span class="c1"># Calculamos el porcentake para que sea más fácil de interpretar</span>
+<span class="linenos">12</span>    <span class="n">porcentaje</span> <span class="o">=</span> <span class="p">(</span><span class="n">nivel_luz</span> <span class="o">/</span> <span class="mi">65535</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="linenos">13</span>    
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Valor ADC: </span><span class="si">{</span><span class="n">nivel_luz</span><span class="si">}</span><span class="s2"> | Luz: </span><span class="si">{</span><span class="n">porcentaje</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+<span class="linenos">16</span>    
+<span class="linenos">17</span>    <span class="c1"># Pequeña pausa para no saturar</span>
+<span class="linenos">18</span>    <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="linenos">19</span>    
+<span class="linenos">20</span>  
+</pre></div>
+</div>
+<p class="rubric">Puedes descargarte el archivo:
+<a class="reference download internal" download="" href="_downloads/c61f370913a634169c7c03cfa35f7e27/ejer03.py"><code class="xref download docutils literal notranslate"><span class="pre">Descarga</span> <span class="pre">el</span> <span class="pre">archivo</span></code></a></p>
+</section>
+<section id="el-interruptor-crepuscular">
+<h2><span class="section-number">3.3. </span>El interruptor crepuscular<a class="headerlink" href="#el-interruptor-crepuscular" title="Link to this heading"></a></h2>
+<p>Vamos a unificar un par de conceptos ya adquiridos y crearemos un programa que encienda/apague un led en función de la luz recibida por la LDR (lo que viene siendo un <strong>interruptor crepuscular</strong>)</p>
+<div class="imagen-separada docutils container">
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/Interruptor_crepuscular_2.png"><img alt="_images/Interruptor_crepuscular_2.png" src="_images/Interruptor_crepuscular_2.png" style="width: 90%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Montaje 1:</strong> Usando componentes estandar</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="imagen-separada docutils container">
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="_images/Interruptor_crepuscular.png"><img alt="_images/Interruptor_crepuscular.png" src="_images/Interruptor_crepuscular.png" style="width: 90%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Montaje 2:</strong> Usando elementos de KeyStudio</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">ADC</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep_ms</span>
+<span class="linenos"> 3</span> 
+<span class="linenos"> 4</span><span class="n">ldr</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="mi">34</span><span class="p">))</span>
+<span class="linenos"> 5</span><span class="n">GPIO_LED</span> <span class="o">=</span> <span class="mi">26</span> 
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">GPIO_LED</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">10</span>    <span class="c1"># read_u16 devuelve el valor crudo entre 0 y 65535</span>
+<span class="linenos">11</span>    <span class="n">nivel_luz</span> <span class="o">=</span> <span class="n">ldr</span><span class="o">.</span><span class="n">read_u16</span><span class="p">()</span>
+<span class="linenos">12</span>    
+<span class="linenos">13</span>    <span class="c1"># Calculamos el porcentake para que sea más fácil de interpretar</span>
+<span class="linenos">14</span>    <span class="n">porcentaje</span> <span class="o">=</span> <span class="p">(</span><span class="n">nivel_luz</span> <span class="o">/</span> <span class="mi">65535</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="linenos">15</span>    
+<span class="linenos">16</span>
+<span class="linenos">17</span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Valor ADC: </span><span class="si">{</span><span class="n">nivel_luz</span><span class="si">}</span><span class="s2"> | Luz: </span><span class="si">{</span><span class="n">porcentaje</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+<span class="linenos">18</span>    
+<span class="linenos">19</span>    <span class="k">if</span> <span class="p">(</span><span class="n">nivel_luz</span> <span class="o">&lt;</span> <span class="mi">40000</span><span class="p">):</span>
+<span class="linenos">20</span>        <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">21</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos">22</span>        <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">23</span>     
+<span class="linenos">24</span>    <span class="c1"># Pequeña pausa para no saturar</span>
+<span class="linenos">25</span>    <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="linenos">26</span>    
+<span class="linenos">27</span>  
+</pre></div>
+</div>
+<p class="rubric">Puedes descargarte el archivo:
+<a class="reference download internal" download="" href="_downloads/a3d3b636949f0ea846ee8b10c166afe0/ejer03_v2.py"><code class="xref download docutils literal notranslate"><span class="pre">Descarga</span> <span class="pre">el</span> <span class="pre">archivo</span></code></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="capitulo2.html" class="btn btn-neutral float-left" title="2. Primeros programas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="capitulo4.html" class="btn btn-neutral float-right" title="4. El Buzzer (o zumbador)" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2026, Paco Avis.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

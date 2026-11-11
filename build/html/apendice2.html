@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo Time &mdash; documentación de Prácticas con ESP32 - S</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=ea439221" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=481003d9"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/translations.js?v=f85f4cfb"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="prev" title="Módulo Machine" href="apendice1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Prácticas con ESP32
+              <img src="_static/logo_web.png" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="capitulo1.html">1. Nuestra placa ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo2.html">2. Primeros programas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo3.html">3. Sensor LDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo4.html">4. El Buzzer (o zumbador)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apéndices:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="apendice1.html">Módulo Machine</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Módulo Time</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#para-que-sirve">¿Para qué sirve?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#importar-el-modulo">Importar el módulo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#funciones-principales">Funciones principales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ejemplos">Ejemplos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sleep-hacer-una-pausa"><cite>sleep()</cite> : hacer una pausa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#led-intermitente">LED intermitente</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sleep-ms-y-sleep-us"><cite>sleep_ms()</cite> y <cite>sleep_us()</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parpadeo-rapido">Parpadeo rápido</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ticks-ms-medir-intervalos"><cite>ticks_ms()</cite> : medir intervalos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parpadeo-sin-bloquear-el-programa">Parpadeo sin bloquear el programa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#comparacion">Comparación</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ticks-us-medir-operaciones-rapidas"><cite>ticks_us()</cite> : medir operaciones rápidas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time-y-localtime-fechas-y-horas"><cite>time()</cite> y <cite>localtime()</cite> : fechas y horas</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#errores-frecuentes">Errores frecuentes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resumen">Resumen</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Prácticas con ESP32</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Módulo Time</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="modulo-time">
+<h1>Módulo Time<a class="headerlink" href="#modulo-time" title="Link to this heading"></a></h1>
+<p>El módulo <cite>time</cite> permite introducir pausas, medir intervalos y organizar acciones periódicas. En robótica sirve para decidir <strong>cuándo</strong> actuar y <strong>durante cuánto tiempo</strong>.</p>
+<section id="para-que-sirve">
+<h2>¿Para qué sirve?<a class="headerlink" href="#para-que-sirve" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Encender un LED durante dos segundos.</p></li>
+<li><p>Hacer avanzar un robot durante un intervalo.</p></li>
+<li><p>Consultar sensores cada 100 milisegundos.</p></li>
+<li><p>Medir la duración de una operación.</p></li>
+<li><p>Ejecutar tareas periódicas sin detener el programa.</p></li>
+</ul>
+<p>En algunas versiones de MicroPython también se encuentra el módulo <cite>utime</cite>.</p>
+</section>
+<section id="importar-el-modulo">
+<h2>Importar el módulo<a class="headerlink" href="#importar-el-modulo" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>También podemos importar funciones concretas:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">ticks_ms</span><span class="p">,</span> <span class="n">ticks_diff</span>
+<span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="funciones-principales">
+<h2>Funciones principales<a class="headerlink" href="#funciones-principales" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 42.9%" />
+<col style="width: 57.1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Función</p></th>
+<th class="head"><p>Utilidad</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>sleep(s)</cite></p></td>
+<td><p>Pausa en segundos</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sleep_ms(ms)</cite></p></td>
+<td><p>Pausa en milisegundos</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sleep_us(us)</cite></p></td>
+<td><p>Pausa en microsegundos</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>ticks_ms()</cite></p></td>
+<td><p>Contador de milisegundos</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>ticks_us()</cite></p></td>
+<td><p>Contador de microsegundos</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>ticks_cpu()</cite></p></td>
+<td><p>Contador de alta resolución, si está disponible</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>ticks_diff(a, b)</cite></p></td>
+<td><p>Diferencia entre dos lecturas del contador</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>ticks_add(t, delta)</cite></p></td>
+<td><p>Suma un intervalo a una referencia temporal</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>time()</cite></p></td>
+<td><p>Segundos desde la época del sistema</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>localtime()</cite></p></td>
+<td><p>Fecha y hora desglosadas</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>mktime()</cite></p></td>
+<td><p>Convierte una fecha y hora en segundos desde la época</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ejemplos">
+<h2>Ejemplos<a class="headerlink" href="#ejemplos" title="Link to this heading"></a></h2>
+<section id="sleep-hacer-una-pausa">
+<h3><cite>sleep()</cite> : hacer una pausa<a class="headerlink" href="#sleep-hacer-una-pausa" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Inicio'</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Han pasado 3 segundos'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Durante <cite>sleep()</cite> la ejecución de ese programa queda bloqueada.</p>
+</section>
+<section id="led-intermitente">
+<h3>LED intermitente<a class="headerlink" href="#led-intermitente" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>  <span class="c1"># GPIO ilustrativo: verificar el pinout</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El LED permanece encendido un segundo y apagado otro segundo.</p>
+</section>
+<section id="sleep-ms-y-sleep-us">
+<h3><cite>sleep_ms()</cite> y <cite>sleep_us()</cite><a class="headerlink" href="#sleep-ms-y-sleep-us" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>1 segundo = 1.000 milisegundos.</p></li>
+<li><p>1 segundo = 1.000.000 microsegundos.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>  <span class="c1"># 0,2 segundos</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep_us</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>   <span class="c1"># 10 microsegundos</span>
+</pre></div>
+</div>
+</section>
+<section id="parpadeo-rapido">
+<h3>Parpadeo rápido<a class="headerlink" href="#parpadeo-rapido" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El estado del LED cambia cada 200 ms; un ciclo completo dura aproximadamente 400 ms. La duración real de las pausas puede ser algo mayor por el tiempo de ejecución.</p>
+</section>
+<section id="ticks-ms-medir-intervalos">
+<h3><cite>ticks_ms()</cite> : medir intervalos<a class="headerlink" href="#ticks-ms-medir-intervalos" title="Link to this heading"></a></h3>
+<p><cite>ticks_ms()</cite> proporciona un contador interno; <strong>no indica la hora del día</strong>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">inicio</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">final</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">()</span>
+
+<span class="n">duracion</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">inicio</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Duración:'</span><span class="p">,</span> <span class="n">duracion</span><span class="p">,</span> <span class="s1">'ms'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El resultado será aproximadamente 2.000 ms.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p><strong>¿Por qué ticks_diff()?:</strong>
+Los contadores <cite>ticks_ms()</cite> pueden volver a cero al alcanzar su límite. <cite>ticks_diff()</cite> permite calcular diferencias correctamente dentro del intervalo admitido por el contador. Por eso es preferible a restar directamente dos lecturas.</p>
+</div>
+</section>
+<section id="parpadeo-sin-bloquear-el-programa">
+<h3>Parpadeo sin bloquear el programa<a class="headerlink" href="#parpadeo-sin-bloquear-el-programa" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="n">anterior</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">()</span>
+<span class="n">intervalo</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">ahora</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">ahora</span><span class="p">,</span> <span class="n">anterior</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">intervalo</span><span class="p">:</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">toggle</span><span class="p">()</span>
+        <span class="n">anterior</span> <span class="o">=</span> <span class="n">ahora</span>
+    <span class="c1"># Aquí podemos consultar sensores u otras entradas.</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p><strong>Funcionamiento:</strong> guardamos una referencia temporal, consultamos el contador y cambiamos el estado del LED cuando hayan transcurrido 500 ms. Mientras tanto, el programa puede atender otras tareas.</p>
+</div>
+</section>
+</section>
+<section id="comparacion">
+<h2>Comparación<a class="headerlink" href="#comparacion" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 42.9%" />
+<col style="width: 57.1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><cite>sleep()</cite></p></th>
+<th class="head"><p><cite>ticks_ms()</cite> con <cite>ticks_diff()</cite></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Introduce una pausa bloqueante</p></td>
+<td><p>Permite comprobar el tiempo sin bloquear</p></td>
+</tr>
+<tr class="row-odd"><td><p>Es sencillo para secuencias lineales</p></td>
+<td><p>Es adecuado para tareas concurrentes en un bucle</p></td>
+</tr>
+<tr class="row-even"><td><p>Puede retrasar la lectura de sensores</p></td>
+<td><p>Facilita la consulta frecuente de sensores</p></td>
+</tr>
+</tbody>
+</table>
+<section id="ticks-us-medir-operaciones-rapidas">
+<h3><cite>ticks_us()</cite> : medir operaciones rápidas<a class="headerlink" href="#ticks-us-medir-operaciones-rapidas" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">inicio</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span>
+
+<span class="n">final</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Tiempo:'</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">inicio</span><span class="p">),</span> <span class="s1">'microsegundos'</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p><strong>ticks_cpu()</strong> (sin el espacio inicial al escribirlo en código) también puede existir, pero su disponibilidad y unidad dependen del puerto de MicroPython.</p>
+</div>
+</section>
+<section id="time-y-localtime-fechas-y-horas">
+<h3><cite>time()</cite> y <cite>localtime()</cite> : fechas y horas<a class="headerlink" href="#time-y-localtime-fechas-y-horas" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">())</span>
+
+<span class="n">fecha</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Año:'</span><span class="p">,</span> <span class="n">fecha</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Mes:'</span><span class="p">,</span> <span class="n">fecha</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Día:'</span><span class="p">,</span> <span class="n">fecha</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Hora:'</span><span class="p">,</span> <span class="n">fecha</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Minuto:'</span><span class="p">,</span> <span class="n">fecha</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p><strong>time.time()</strong> devuelve segundos desde la época del sistema, que depende del puerto y la versión. <strong>localtime()</strong> devuelve una tupla con la fecha y hora. <strong>La fecha y hora solo serán fiables si el reloj está configurado o sincronizado</strong>.</p>
+</div>
+</section>
+</section>
+<section id="errores-frecuentes">
+<h2>Errores frecuentes<a class="headerlink" href="#errores-frecuentes" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 42.9%" />
+<col style="width: 57.1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Error</p></th>
+<th class="head"><p>Corrección</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>sleep(500)</strong> para esperar medio segundo</p></td>
+<td><p>Utiliza <strong>sleep_ms(500)</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Restar directamente lecturas de <cite>ticks_ms()</cite></p></td>
+<td><p>Utiliza <strong>ticks_diff()</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Interpretar <strong>ticks_ms()</strong> como hora actual</p></td>
+<td><p>Es un contador de intervalos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Abusar de pausas largas en robots autónomos</p></td>
+<td><p>Usa temporización no bloqueante</p></td>
+</tr>
+<tr class="row-even"><td><p>Suponer que <strong>localtime()</strong> siempre es correcto</p></td>
+<td><p>Configura o sincroniza el reloj</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resumen">
+<h2>Resumen<a class="headerlink" href="#resumen" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 42.9%" />
+<col style="width: 57.1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Necesidad</p></th>
+<th class="head"><p>Función</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Esperar 2 segundos</p></td>
+<td><p><strong>time.sleep(2)</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Esperar 100 ms</p></td>
+<td><p><strong>time.sleep_ms(100)</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Esperar 10 µs</p></td>
+<td><p><strong>time.sleep_us(10)</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Ejecutar tareas periódicas sin bloquear</p></td>
+<td><p><strong>ticks_ms()</strong> + <strong>ticks_diff()</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Consultar fecha y hora</p></td>
+<td><p><strong>time.localtime()</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Obtener marca temporal en segundos</p></td>
+<td><p><strong>time.time()</strong></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="apendice1.html" class="btn btn-neutral float-left" title="Módulo Machine" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2026, Paco Avis.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

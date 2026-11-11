@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Primeros programas &mdash; documentación de Prácticas con ESP32 - S</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=ea439221" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=481003d9"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/translations.js?v=f85f4cfb"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="3. Sensor LDR" href="capitulo3.html" />
+    <link rel="prev" title="1. Nuestra placa ESP32" href="capitulo1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Prácticas con ESP32
+              <img src="_static/logo_web.png" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="capitulo1.html">1. Nuestra placa ESP32</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Primeros programas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#encendiendo-un-led">2.1. Encendiendo un led</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#el-esquema">2.1.1. El esquema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#el-programa">2.1.2. El programa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#posibles-mejoras-del-codigo">2.1.3. Posibles mejoras del código</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#usando-un-pulsador">2.2. Usando un pulsador</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.2.1. El esquema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.2.2. El programa</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo3.html">3. Sensor LDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo4.html">4. El Buzzer (o zumbador)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apéndices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apendice1.html">Módulo Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apendice2.html">Módulo Time</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Prácticas con ESP32</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>Primeros programas</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="primeros-programas">
+<h1><span class="section-number">2. </span>Primeros programas<a class="headerlink" href="#primeros-programas" title="Link to this heading"></a></h1>
+<section id="encendiendo-un-led">
+<h2><span class="section-number">2.1. </span>Encendiendo un led<a class="headerlink" href="#encendiendo-un-led" title="Link to this heading"></a></h2>
+<p>Nuestra primera práctica consistirá en el típico <strong>Hola Mundo</strong> electrónico. Encenderemos/apagaremos un diodo led.
+En la siguiente figura puedes ver cómo debes conectar el diodo con su resistencia a la ESP32 antes de programarla.
+Puedes hacer click con el botón derecho del ratón en la imagen para poder verla más grande.</p>
+<section id="el-esquema">
+<h3><span class="section-number">2.1.1. </span>El esquema<a class="headerlink" href="#el-esquema" title="Link to this heading"></a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>El <strong>ánodo</strong> del diodo led está conectado, a través de una resistencia, al <strong>GPIO26</strong> de la placa mientras que el <strong>cátodo</strong> se encuentra conectado al <strong>GND</strong> de la placa a través de una de las líneas de alimentación.</p>
+</div>
+<div class="imagen-separada docutils container">
+<a class="reference internal image-reference" href="_images/ESP32-Led.png"><img alt="Detalle de la placa" class="align-center" src="_images/ESP32-Led.png" style="width: 90%;" />
+</a>
+</div>
+<p>En el caso de que dispongamos de elementos de la marca KeyStudio podríamos montar el circuito de esta manera. Si observas verás que usamos un cable extra, es para proporcionar corriente al led, conectado al pin <strong>5v</strong>. Además ya no usamos una resistencia para proteger al led porque viene incorporada en la propia PCB de KeyStudio, esto está bien pero nos quita libertad a la hora de diseñar nuestros propios circuitos.</p>
+<div class="imagen-separada docutils container">
+<a class="reference internal image-reference" href="_images/LED_KeyStudio.png"><img alt="Detalle de la placa" class="align-center" src="_images/LED_KeyStudio.png" style="width: 90%;" />
+</a>
+</div>
+</section>
+<section id="el-programa">
+<h3><span class="section-number">2.1.2. </span>El programa<a class="headerlink" href="#el-programa" title="Link to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Este programa no lo vamos a descargar en la placa. La tendremos conectada y pulsaremos el
+botón <strong>Ejecutar</strong> de Thonny para probarlo. El diodo led se encenderá/apagará según el intervalo de
+tiempo que hayamos establecido con la función <strong>sleep_ms()</strong>.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep_ms</span>
+<span class="linenos"> 3</span> 
+<span class="linenos"> 4</span><span class="n">GPIO_LED</span> <span class="o">=</span> <span class="mi">26</span>	<span class="c1">#D2</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">GPIO_LED</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">10</span>    <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="linenos">12</span>    <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">13</span>    <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Puedes descargarte el archivo:
+<a class="reference download internal" download="" href="_downloads/4e7955f382e2a3d5e35c39632f6e0170/ejer01.py"><code class="xref download docutils literal notranslate"><span class="pre">Descarga</span> <span class="pre">el</span> <span class="pre">archivo</span></code></a></p>
+</section>
+<hr class="docutils" />
+<section id="posibles-mejoras-del-codigo">
+<h3><span class="section-number">2.1.3. </span>Posibles mejoras del código<a class="headerlink" href="#posibles-mejoras-del-codigo" title="Link to this heading"></a></h3>
+<p>Veamos ahora dos variantes del mismo programa.</p>
+<p>En esta primera variante no nos importa conocer si el led está encendido o no, simplemente le indicamos que su valor debe ser el contrario (de ahí el operador <strong>not</strong>) al que tenía.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">2</span> <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="ow">not</span> <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
+<span class="linenos">3</span> <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">4</span> <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="ow">not</span> <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
+<span class="linenos">5</span> <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ya en esta variante el código se reduce al máximo gracias a la función <strong>toggle()</strong>. Ella misma se encarga de cambiar el estado del diodo led según el tiempo que le hayamos indicado sin que tengamos que hacer nada.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">2</span>     <span class="n">led</span><span class="o">.</span><span class="n">toggle</span><span class="p">()</span>
+<span class="linenos">3</span>     <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="usando-un-pulsador">
+<h2><span class="section-number">2.2. </span>Usando un pulsador<a class="headerlink" href="#usando-un-pulsador" title="Link to this heading"></a></h2>
+<p>El pulsador o botón es el dispositivo que permite el paso de intensidad cuando es pulsado. Una vez se deja de presionar vuelve a su posición inicial.</p>
+<p>Está formado por cuatro patas o terminales, conectados “dos a dos” como se observa a continuación:</p>
+<div class="imagen-separada docutils container">
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="_images/img_pulsador.png"><img alt="_images/img_pulsador.png" src="_images/img_pulsador.png" style="width: 90%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Fuente:</strong> <a class="reference external" href="https://inputmakers.com/">https://inputmakers.com/</a></span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<section id="id1">
+<h3><span class="section-number">2.2.1. </span>El esquema<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>Asegúrate de conectar bien los cables. Si es necesario haz click en la imagen para verla más grande.</p>
+<div class="imagen-separada docutils container">
+<a class="reference internal image-reference" href="_images/ESP32-Pulsador.png"><img alt="_images/ESP32-Pulsador.png" class="align-center" src="_images/ESP32-Pulsador.png" style="width: 90%;" />
+</a>
+</div>
+<p>El siguiente esquema usa el componente <strong>botón de KeyStudio</strong>:</p>
+<div class="imagen-separada docutils container">
+<a class="reference internal image-reference" href="_images/Btn_Keystudio.png"><img alt="_images/Btn_Keystudio.png" class="align-center" src="_images/Btn_Keystudio.png" style="width: 90%;" />
+</a>
+</div>
+</section>
+<section id="id2">
+<h3><span class="section-number">2.2.2. </span>El programa<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep_ms</span>
+<span class="linenos"> 3</span> 
+<span class="linenos"> 4</span><span class="n">GPIO_LED</span> <span class="o">=</span> <span class="mi">26</span>	<span class="c1">#D2</span>
+<span class="linenos"> 5</span><span class="n">GPIO_BOTON</span> <span class="o">=</span> <span class="mi">25</span> <span class="c1">#D3</span>
+<span class="linenos"> 6</span> 
+<span class="linenos"> 7</span><span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">GPIO_LED</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 8</span><span class="n">boton</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">GPIO_BOTON</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">11</span>    <span class="n">pulsado</span> <span class="o">=</span> <span class="n">boton</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+<span class="linenos">12</span>    <span class="nb">print</span><span class="p">(</span><span class="n">pulsado</span><span class="p">)</span>
+<span class="linenos">13</span>    
+<span class="linenos">14</span>    <span class="k">if</span> <span class="n">pulsado</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">15</span>        <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">16</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos">17</span>        <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">18</span>    <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>    
+</pre></div>
+</div>
+<p class="rubric">Puedes descargarte el archivo:
+<a class="reference download internal" download="" href="_downloads/59c82b9d58b475a3c4145650057c9c78/ejer02.py"><code class="xref download docutils literal notranslate"><span class="pre">Descarga</span> <span class="pre">el</span> <span class="pre">archivo</span></code></a></p>
+<p>Si te fijas en el programa, las <strong>líneas 28 y 29</strong> las usamos para obtener el valor (estado) del pulsador y mostrar ese dato en la consola de Thonny.</p>
+<p>Podemos mejorar el programa haciendo que en la consola, en lugar de 0 y 1 muestre un texto indicando si el led está encendido o apagado. Para ello nos valdremos de dos variables auxiliares donde guardaremos el <strong>estado_actual</strong> y <strong>estado_anterior</strong> del led, de tal manera que si el programa detecta una diferencia entre sus valores significará que el botón ha sido pulsado y solo habrá que indicar cómo se encuentra el led:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
+<span class="linenos"> 2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep_ms</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span> <span class="n">GPIO_LED</span> <span class="o">=</span> <span class="mi">26</span>       <span class="c1">#D2</span>
+<span class="linenos"> 5</span> <span class="n">GPIO_BOTON</span> <span class="o">=</span> <span class="mi">25</span> <span class="c1">#D3</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span> <span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">GPIO_LED</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 8</span> <span class="n">boton</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">GPIO_BOTON</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span> <span class="n">estado_anterior</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">13</span>     <span class="n">estado_actual</span> <span class="o">=</span> <span class="n">boton</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>     <span class="k">if</span> <span class="n">estado_actual</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">16</span>         <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">17</span>     <span class="k">else</span><span class="p">:</span>
+<span class="linenos">18</span>         <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>     <span class="k">if</span> <span class="n">estado_actual</span> <span class="o">!=</span> <span class="n">estado_anterior</span><span class="p">:</span>
+<span class="linenos">21</span>         <span class="k">if</span> <span class="n">estado_actual</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">22</span>             <span class="nb">print</span><span class="p">(</span><span class="s2">"Botón PULSADO: LED ON"</span><span class="p">)</span>
+<span class="linenos">23</span>         <span class="k">else</span><span class="p">:</span>
+<span class="linenos">24</span>             <span class="nb">print</span><span class="p">(</span><span class="s2">"Botón LIBERADO: LED OFF"</span><span class="p">)</span>
+<span class="linenos">25</span>         <span class="n">estado_antarior</span> <span class="o">=</span> <span class="n">estado_actual</span>
+<span class="linenos">26</span>     <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="capitulo1.html" class="btn btn-neutral float-left" title="1. Nuestra placa ESP32" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="capitulo3.html" class="btn btn-neutral float-right" title="3. Sensor LDR" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2026, Paco Avis.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

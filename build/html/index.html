@@ -6,9 +6,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>practicas con esp32 documentation &mdash; documentación de Prácticas con ESP32 - S</title>
+  <title>Prácticas con ESP32 &mdash; documentación de Prácticas con ESP32 - S</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=ea439221" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -20,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
-    <link rel="next" title="🚀 Capítulo 1: El Mapa del Tesoro - Tu Placa ESP32" href="capitulo1.html" /> 
+    <link rel="next" title="1. Nuestra placa ESP32" href="capitulo1.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,7 +46,15 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="capitulo1.html">🚀 Capítulo 1: El Mapa del Tesoro - Tu Placa ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo1.html">1. Nuestra placa ESP32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo2.html">2. Primeros programas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo3.html">3. Sensor LDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo4.html">4. El Buzzer (o zumbador)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apéndices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apendice1.html">Módulo Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apendice2.html">Módulo Time</a></li>
 </ul>
 
         </div>
@@ -62,9 +71,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">practicas con esp32 documentation</li>
+      <li class="breadcrumb-item active">Prácticas con ESP32</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/index.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
       </li>
   </ul>
   <hr/>
@@ -72,20 +80,90 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="practicas-con-esp32-documentation">
-<h1>practicas con esp32 documentation<a class="headerlink" href="#practicas-con-esp32-documentation" title="Link to this heading"></a></h1>
-<p>Add your content using <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> syntax. See the
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>
-documentation for details.</p>
+  <section id="practicas-con-esp32">
+<h1>Prácticas con ESP32<a class="headerlink" href="#practicas-con-esp32" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="capitulo1.html">🚀 Capítulo 1: El Mapa del Tesoro - Tu Placa ESP32</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="capitulo1.html#el-cerebro-el-chip-esp32">El Cerebro: El Chip ESP32</a></li>
-<li class="toctree-l2"><a class="reference internal" href="capitulo1.html#los-musculos-los-pines-de-conexion-gpio">Los Músculos: Los Pines de Conexión (GPIO)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="capitulo1.html#los-sentidos-integrados-de-steamakers">Los Sentidos Integrados de STEAMakers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="capitulo1.html#como-le-damos-energia">¿Cómo le damos energía?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="capitulo1.html#tu-turno-de-inspeccion">¡Tu turno de inspección!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo1.html">1. Nuestra placa ESP32</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="capitulo1.html#el-cerebro-el-chip-esp32">1.1. El Cerebro: El Chip ESP32</a></li>
+<li class="toctree-l2"><a class="reference internal" href="capitulo1.html#diccionario-basico">1.2. Diccionario Básico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="capitulo1.html#los-musculos-los-pines-de-conexion-gpio">1.3. Los Músculos: Los Pines de Conexión (GPIO)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="capitulo1.html#entradas-y-salidas-digitales">1.4. Entradas y Salidas Digitales</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="capitulo1.html#correspondencia-de-pines-digitales">1.4.1. Correspondencia de pines digitales</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="capitulo1.html#entradas-analogicas">1.5. Entradas Analógicas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="capitulo1.html#id1">1.5.1. Entradas analógicas</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="capitulo1.html#comunicacion-i2c">1.6. Comunicación I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="capitulo1.html#como-le-damos-energia">1.7. ¿Cómo le damos energía?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="capitulo1.html#tu-turno-de-inspeccion">1.8. ¡Tu turno de inspección!</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo2.html">2. Primeros programas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="capitulo2.html#encendiendo-un-led">2.1. Encendiendo un led</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="capitulo2.html#el-esquema">2.1.1. El esquema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="capitulo2.html#el-programa">2.1.2. El programa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="capitulo2.html#posibles-mejoras-del-codigo">2.1.3. Posibles mejoras del código</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="capitulo2.html#usando-un-pulsador">2.2. Usando un pulsador</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="capitulo2.html#id1">2.2.1. El esquema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="capitulo2.html#id2">2.2.2. El programa</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo3.html">3. Sensor LDR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="capitulo3.html#el-esquema">3.1. El esquema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="capitulo3.html#el-programa">3.2. El programa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="capitulo3.html#el-interruptor-crepuscular">3.3. El interruptor crepuscular</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo4.html">4. El Buzzer (o zumbador)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="capitulo4.html#que-tipos-de-buzzer-existen">4.1. ¿Qué tipos de buzzer existen?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="capitulo4.html#buzzer-activo-y-pasivo">4.1.1. Buzzer activo y pasivo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Apéndices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apendice1.html">Módulo Machine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apendice1.html#que-es-machine">¿Qué es <cite>machine</cite>?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apendice1.html#componentes-principales">Componentes principales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apendice1.html#tabla-de-consulta-rapida">Tabla de consulta rápida</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apendice1.html#ejemplo">Ejemplo:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="apendice1.html#pin-encender-y-apagar-un-led"><strong>Pin</strong>: encender y apagar un LED</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apendice2.html">Módulo Time</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apendice2.html#para-que-sirve">¿Para qué sirve?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apendice2.html#importar-el-modulo">Importar el módulo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apendice2.html#funciones-principales">Funciones principales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apendice2.html#ejemplos">Ejemplos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="apendice2.html#sleep-hacer-una-pausa"><cite>sleep()</cite> : hacer una pausa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apendice2.html#led-intermitente">LED intermitente</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apendice2.html#sleep-ms-y-sleep-us"><cite>sleep_ms()</cite> y <cite>sleep_us()</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="apendice2.html#parpadeo-rapido">Parpadeo rápido</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apendice2.html#ticks-ms-medir-intervalos"><cite>ticks_ms()</cite> : medir intervalos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apendice2.html#parpadeo-sin-bloquear-el-programa">Parpadeo sin bloquear el programa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="apendice2.html#comparacion">Comparación</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="apendice2.html#ticks-us-medir-operaciones-rapidas"><cite>ticks_us()</cite> : medir operaciones rápidas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apendice2.html#time-y-localtime-fechas-y-horas"><cite>time()</cite> y <cite>localtime()</cite> : fechas y horas</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="apendice2.html#errores-frecuentes">Errores frecuentes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apendice2.html#resumen">Resumen</a></li>
 </ul>
 </li>
 </ul>
@@ -96,7 +174,7 @@ documentation for details.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
-        <a href="capitulo1.html" class="btn btn-neutral float-right" title="🚀 Capítulo 1: El Mapa del Tesoro - Tu Placa ESP32" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="capitulo1.html" class="btn btn-neutral float-right" title="1. Nuestra placa ESP32" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
