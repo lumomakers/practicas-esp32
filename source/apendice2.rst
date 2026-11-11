@@ -61,7 +61,7 @@ Funciones principales
 
 Ejemplos
 ----------
-`sleep()`: hacer una pausa
+`sleep()` : hacer una pausa
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: python
 
@@ -80,7 +80,7 @@ LED intermitente
     from machine import Pin
     import time
 
-    led = Pin(15, Pin.OUT)  # GPIO ilustrativo: verificar el pinout
+    led = Pin(25, Pin.OUT)  # GPIO ilustrativo: verificar el pinout
 
     while True:
         led.on()
@@ -110,7 +110,7 @@ Parpadeo rápido
     from machine import Pin
     import time
 
-    led = Pin(15, Pin.OUT)
+    led = Pin(25, Pin.OUT)
 
     while True:
         led.on()
@@ -120,7 +120,7 @@ Parpadeo rápido
 
 El estado del LED cambia cada 200 ms; un ciclo completo dura aproximadamente 400 ms. La duración real de las pausas puede ser algo mayor por el tiempo de ejecución.
 
-`ticks_ms()`: medir intervalos
+`ticks_ms()` : medir intervalos
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 `ticks_ms()` proporciona un contador interno; **no indica la hora del día**.
 
@@ -138,6 +138,118 @@ El estado del LED cambia cada 200 ms; un ciclo completo dura aproximadamente 400
 
 El resultado será aproximadamente 2.000 ms.
 
-.. note:: **¿Por qué `ticks_diff()`?:** 
+.. note:: **¿Por qué ticks_diff()?:** 
     Los contadores `ticks_ms()` pueden volver a cero al alcanzar su límite. `ticks_diff()` permite calcular diferencias correctamente dentro del intervalo admitido por el contador. Por eso es preferible a restar directamente dos lecturas.
 
+Parpadeo sin bloquear el programa
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: python
+
+    from machine import Pin
+    import time
+
+    led = Pin(25, Pin.OUT)
+    anterior = time.ticks_ms()
+    intervalo = 500
+
+    while True:
+        ahora = time.ticks_ms()
+
+        if time.ticks_diff(ahora, anterior) >= intervalo:
+            led.toggle()
+            anterior = ahora
+        # Aquí podemos consultar sensores u otras entradas.
+
+.. tip:: **Funcionamiento:** guardamos una referencia temporal, consultamos el contador y cambiamos el estado del LED cuando hayan transcurrido 500 ms. Mientras tanto, el programa puede atender otras tareas.
+
+Comparación
+-------------
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 40
+
+   * - `sleep()`
+     - `ticks_ms()` con `ticks_diff()`
+   * - Introduce una pausa bloqueante
+     - Permite comprobar el tiempo sin bloquear
+   * - Es sencillo para secuencias lineales 
+     - Es adecuado para tareas concurrentes en un bucle
+   * - Puede retrasar la lectura de sensores  
+     - Facilita la consulta frecuente de sensores
+
+`ticks_us()` : medir operaciones rápidas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: python
+
+    import time
+
+    inicio = time.ticks_us()
+
+    for i in range(100):
+        resultado = i * i
+
+    final = time.ticks_us()
+    print('Tiempo:', time.ticks_diff(final, inicio), 'microsegundos')
+
+
+.. note:: **ticks_cpu()** (sin el espacio inicial al escribirlo en código) también puede existir, pero su disponibilidad y unidad dependen del puerto de MicroPython.
+
+`time()` y `localtime()` : fechas y horas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: python
+
+    import time
+
+    print(time.time())
+    print(time.localtime())
+
+    fecha = time.localtime()
+    print('Año:', fecha[0])
+    print('Mes:', fecha[1])
+    print('Día:', fecha[2])
+    print('Hora:', fecha[3])
+    print('Minuto:', fecha[4])
+
+
+.. note:: **time.time()** devuelve segundos desde la época del sistema, que depende del puerto y la versión. **localtime()** devuelve una tupla con la fecha y hora. **La fecha y hora solo serán fiables si el reloj está configurado o sincronizado**.
+
+Errores frecuentes
+---------------------
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 40
+
+   * - Error
+     - Corrección
+   * - **sleep(500)** para esperar medio segundo 
+     - Utiliza **sleep_ms(500)**
+   * - Restar directamente lecturas de `ticks_ms()` 
+     - Utiliza **ticks_diff()**
+   * - Interpretar **ticks_ms()** como hora actual
+     - Es un contador de intervalos
+   * - Abusar de pausas largas en robots autónomos 
+     - Usa temporización no bloqueante 
+   * - Suponer que **localtime()** siempre es correcto 
+     - Configura o sincroniza el reloj
+
+
+Resumen
+---------
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 40
+
+   * - Necesidad
+     - Función
+   * - Esperar 2 segundos
+     - **time.sleep(2)**
+   * - Esperar 100 ms
+     - **time.sleep_ms(100)**
+   * - Esperar 10 µs 
+     - **time.sleep_us(10)**
+   * - Ejecutar tareas periódicas sin bloquear 
+     - **ticks_ms()** + **ticks_diff()**
+   * - Consultar fecha y hora
+     - **time.localtime()**
+   * - Obtener marca temporal en segundos
+     - **time.time()**
