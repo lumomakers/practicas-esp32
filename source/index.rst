@@ -23,4 +23,5 @@ Prácticas con ESP32
    :maxdepth: 3
    :caption: Apéndices:
 
-   Apéndice <apendice>
+   Módulo Machine <apendice1>
+   Módulo Time <apendice2>
