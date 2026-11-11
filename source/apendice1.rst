@@ -110,12 +110,9 @@ Ejemplo:
         led.value(0)
         sleep(1)
 
-.. attention::
+.. note::
     - **Pin(15, Pin.OUT)** configura el GPIO 15 como salida. 
     - **value(1)** establece un nivel lógico alto.
     - **value(0)** establece un nivel lógico bajo.
     - **sleep(1)** espera un segundo.
-
-**Nota:** Que un nivel alto encienda el LED depende de cómo esté conectado. Utiliza una resistencia limitadora adecuada con un LED externo.
-
 
