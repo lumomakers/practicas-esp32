@@ -49,9 +49,19 @@ Vamos a unificar un par de conceptos ya adquiridos y crearemos un programa que e
 
 .. container:: imagen-separada
 
-    .. image:: /_static/capitulo3/Interruptor_crepuscular.png
+    .. figure:: /_static/capitulo3/Interruptor_crepuscular_2.png
         :align: center
         :width: 90%
+
+        **Montaje 1:** Usando componentes estandar
+
+.. container:: imagen-separada
+
+    .. figure:: /_static/capitulo3/Interruptor_crepuscular.png
+        :align: center
+        :width: 90%
+
+        **Montaje 2:** Usando elementos de KeyStudio
 
 .. literalinclude:: programas/capitulo3/ejer03_v2.py
     :language: python

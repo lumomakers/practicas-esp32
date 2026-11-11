@@ -1,20 +1,3 @@
-'''
----------------------------------------------------------------------
-Programa: ejer02.py
-
-Placa: ESP32 STEAMakers
-
-Descripción: Encendido de un led por acción de pulsador
-
-Observaciones:
-
-    GPIO del led -------> 26 (D2)
-    GPIO del pulsador---> 25 (D3)
-    
-    Seguimos sin guardar el programa en la placa.
----------------------------------------------------------------------
-'''
-
 from machine import Pin
 from time import sleep_ms
  

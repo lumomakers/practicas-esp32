@@ -60,6 +60,22 @@ La placa está basada en el microcontrolador ESP32-WROOM-32 y sus principales es
    **¡Un Cerebro con Superpoderes!** 🧠
    A diferencia de las placas más antiguas, el ESP32 viene con **Wi-Fi y Bluetooth** integrados de fábrica. ¡Eso significa que tu placa puede conectarse a internet, hablar con tu teléfono móvil o recibir órdenes desde el otro lado de la habitación!
 
+Diccionario Básico
+===================
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 40
+
+   * - Concepto
+     - Significado
+   * - GPIO
+     - Entrada/Salida de Propósito General (**General Purpose Input/Output**)
+   * - GPIO **n**
+     - Indica el número de pin GPIO al que conectamos el dispositivo
+   * - UART
+     - Protocolo de asíncrono (no necesita reloj para marcar el ritmo) conexión serie entre dos dispositivos. 
+
+
 Los Músculos: Los Pines de Conexión (GPIO)
 ===========================================
 
