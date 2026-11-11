@@ -11,10 +11,16 @@ Prácticas con ESP32
 
 .. toctree::
    :maxdepth: 3
-   :numbered: 3
+   :numered: 3
    :caption: Contenidos:
+   
 
    capitulo1
    capitulo2
    capitulo3
 
+.. toctree::
+   :maxdepth: 3
+   :caption: Apéndices:
+
+   Apéndice <apendice>
