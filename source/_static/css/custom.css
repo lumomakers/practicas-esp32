@@ -36,31 +36,23 @@
 .ficha-componente {
     display: grid;
     grid-template-columns: 120px minmax(0, 1fr);
-    gap: 24px;
+    gap: 20px;
     align-items: start;
-
-    padding: 24px 0;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-/* Eliminar el borde de la última ficha */
-
-.ficha-componente:last-child {
-    border-bottom: none;
 }
 
 /* Marco de la imagen */
 
+/* Recuadro de la imagen */
 .ficha-foto {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    width: 110px;
-    height: 110px;
+    width: 120px;
+    height: 120px;
 
     border: 1px solid #e5e5e5;
-    border-radius: 18px;
+    border-radius: 15px;
     background: white;
 
     overflow: hidden;
@@ -70,8 +62,8 @@
 /* Imagen */
 
 .ficha-foto img {
-    width: 30%;
-    height: 30%;
+    width: 10%;
+    height: 10%;
     object-fit: contain;
 }
 

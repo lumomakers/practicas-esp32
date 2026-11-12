@@ -17,7 +17,7 @@ Buzzer activo y pasivo
 
    .. container:: ficha-foto
 
-      .. image:: _static/capitulo4/buzzer_activo.jpeg
+      .. image:: _static/capitulo4/buzzer_activo.png
          :alt: Buzzer activo
 
    .. container:: ficha-texto
@@ -37,7 +37,7 @@ Buzzer activo y pasivo
 
    .. container:: ficha-foto
 
-      .. image:: _static/capitulo4/buzzer_pasivo.jpeg
+      .. image:: _static/capitulo4/buzzer_pasivo.png
          :alt: Buzzer pasivo
 
    .. container:: ficha-texto

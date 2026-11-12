@@ -29,11 +29,11 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 # Hoja de estilos personalizada
-html_css_files = ['css/custom.css']
+html_css_files = ['css/custom.css',]
 
 
 # Ocultar el enlace "Ver código fuente de la página"
 html_show_sourcelink = False
 
-html_theme = 'sphinx_rtd_theme'
-html_static_path = ['_static']
+#html_theme = 'sphinx_rtd_theme'
+#html_static_path = ['_static']
