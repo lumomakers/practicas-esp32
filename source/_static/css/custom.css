@@ -62,8 +62,8 @@
 /* Imagen */
 
 .ficha-foto img {
-    width: 10%;
-    height: 10%;
+    width: 75%;
+    height: 75%;
     object-fit: contain;
 }
 
@@ -89,4 +89,7 @@
         grid-template-columns: 1fr;
         gap: 16px;
     }
+}
+body {
+    outline: 8px solid red !important;
 }
