@@ -33,11 +33,13 @@
 /* ----------------------------------- */
 /* Ficha de componente */
 
-.ficha-componente {
-    display: grid;
+.rst-content div.ficha-componente {
+    display: grid !important;
     grid-template-columns: 120px minmax(0, 1fr);
     gap: 20px;
     align-items: start;
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 /* Marco de la imagen */
