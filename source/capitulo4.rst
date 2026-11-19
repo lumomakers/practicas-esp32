@@ -1,9 +1,14 @@
 =========================
 El Buzzer (o zumbador)
 =========================
-Un buzzer o zumbador es un pequeño dispositivo electrónico capaz de producir sonidos. En robótica podemos utilizarlo para generar alarmas, avisos, señales acústicas e incluso melodías.
+Un buzzer o zumbador es un pequeño dispositivo electrónico capaz de producir sonidos. En robótica podemos utilizarlo para :
 
-Por ejemplo, podemos programar nuestro robot para que emita un pitido cuando detecte un obstáculo a menos de 20 cm.
+- Emitir una alarma cuando un robot detecta un obstáculo.
+- Avisar de que ha comenzado o terminado una operación.
+- Dar señales acústicas distintas según una situación.
+- Reproducir notas musicales sencillas, siempre que sea un buzzer adecuado.
+
+El microcontrolador puede controlar un buzzer mediante señales eléctricas. La forma de control depende del **tipo de buzzer**.
 
 ¿Qué tipos de buzzer existen?
 -------------------------------
@@ -24,14 +29,46 @@ Buzzer activo y pasivo
 
       .. rubric:: Buzzer activo
 
-      Incorpora un oscilador que genera el sonido.
-      Normalmente basta con activar su alimentación
-      para que emita un pitido de frecuencia fija.
+      Un **buzzer activo** incorpora un circuito oscilador. Al aplicarle su alimentación adecuada, puede generar por sí mismo un tono de frecuencia prácticamente fija.
 
-      En MicroPython podemos controlarlo con
-      ``machine.Pin``, siempre que sea compatible
-      eléctricamente con el GPIO.
+      - Es útil para alarmas y avisos.
+      - Normalmente se controla mediante encendido y apagado.
+      - En MicroPython podemos utilizar ``machine.Pin``.
+      - Si requiere 5 V o consume más corriente de la que puede entregar un GPIO, necesitaremos una **etapa de control**, por ejemplo un transistor.
 
+      Este buzzer concretamente es el **Keyestudio KS0018 – Digital Buzzer Module** y posee las siguientes características:
+
+      .. list-table:: 
+         :header-rows: 1
+         :widths: 30 30
+
+         * - Característica
+           - Descripción
+         * - `Tipo`
+           - Activo 
+         * - `Alimentación`
+           - 3,3 - 5 V
+         * - `Conexiones`
+           - S, +, y -
+         * - `MicroPython`
+           - ``machine.Pin``    
+         * - `Transistor adicional`
+           - No es necesario, el módulo incorpora uno
+
+      Conexión con el **ESP32 STEAMakers**:
+
+         .. list-table:: 
+            :header-rows: 1
+            :widths: 30 30
+
+            * - Keyestudio KS0018
+              - STEAMakers
+            * - **S** `(Señal)`
+              - D5 - GPIO16 
+            * - **+** `(Alimentación)`
+              - 3,3 V
+            * - **-** `(Tierra)`
+              - GND
 
 .. container:: ficha-componente
 
@@ -44,9 +81,50 @@ Buzzer activo y pasivo
 
       .. rubric:: Buzzer pasivo
 
-      Necesita recibir una señal periódica para
-      generar sonido. Podemos modificar la frecuencia
-      de esa señal para producir distintas notas.
+      Un **buzzer pasivo** no incorpora un oscilador que genere autónomamente la nota. Necesita una señal que cambie periódicamente.
 
-      En MicroPython lo controlamos normalmente
-      con ``machine.PWM``.
+      - Es útil para notas musicales y efectos sonoros.
+      - Podemos modificar la frecuencia de la señal para cambiar de nota.
+      - En MicroPython normalmente utilizamos ``machine.PWM``.
+      - Según las características eléctricas del componente, puede necesitar también un transistor de control.
+
+Comparativa
+=====================
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 30 30
+
+   *  - Característica
+      - Buzzer activo
+      - Buzzer pasivo
+   *  - `Oscilador interno`
+      - Si
+      - No 
+   *  - `Sonido sostenido con alimentación continua adecuada`
+      - Si
+      - No
+   *  - `Posibilidad de generar diferentes notas desde el programa`
+      - Generalmente no
+      - Si
+   *  - `Control habitual`
+      - ``Pin``
+      - ``PWM``
+   *  - `Uso habitual`
+      - Avisos y alarmas
+      - Notas y melodías
+
+.. important:: **Dos terminales no significa pasivo y tres pines no significa activo**. Hay buzzers activos y pasivos de dos terminales y módulos de ambos tipos con conectores de tres pines.
+
+
+
+¿Qué necesitamos saber sobre la ESP32 STEAMakers?
+----------------------------------------------------
+La ESP32 trabaja con señales GPIO de **3,3 V**. Una tensión de alimentación de 5 V en un actuador no significa que debamos aplicar 5 V a la entrada de un GPIO.
+
+**Reglas de seguridad eléctrica:**
+
+#. No alimentar un buzzer de **5 V** directamente desde un GPIO de **3,3 V**.
+#. No dar por hecho que todos los buzzers tienen el mismo consumo.
+#. Unir las masas (**GND**) del controlador y de la alimentación del actuador, cuando se utilice una etapa de control externa.
+#. Verificar las patas **B**, **C** y **E** del transistor concreto: su disposición física depende de la referencia y del encapsulado.
+#. No presuponer que el conector de 5 V de la placa puede alimentar cualquier carga; comprobar su capacidad de corriente y la fuente utilizada.

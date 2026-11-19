@@ -26,3 +26,4 @@ Prácticas con ESP32
 
    Módulo Machine <apendice1>
    Módulo Time <apendice2>
+   Señales Digitales y PWM <apendice3>
