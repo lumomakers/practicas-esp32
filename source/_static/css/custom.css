@@ -91,3 +91,13 @@
         gap: 16px;
     }
 }
+
+/* Subapartados sin numeración */
+
+.rubric {
+    font-size: 1.15em;
+    font-style: italic;
+    font-weight: normal;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+}

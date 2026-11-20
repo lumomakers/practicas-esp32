@@ -10,8 +10,8 @@ Prácticas con ESP32
 
 
 .. toctree::
-   :maxdepth: 4
-   :numbered: 3
+   :maxdepth: 1
+   :numbered: 2
    :caption: Contenidos:
    
 

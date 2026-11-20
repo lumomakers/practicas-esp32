@@ -61,8 +61,10 @@ Funciones principales
 
 Ejemplos
 ----------
-`sleep()` : hacer una pausa
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. rubric:: Ejemplo 1: ``sleep()``  hacer una pausa
+
+Durante ``sleep()`` la ejecución de ese programa queda bloqueada.
+
 .. code-block:: python
 
     import time
@@ -71,10 +73,14 @@ Ejemplos
     time.sleep(3)
     print('Han pasado 3 segundos')
 
-Durante `sleep()` la ejecución de ese programa queda bloqueada.
 
-LED intermitente
-~~~~~~~~~~~~~~~~~
+
+----
+
+.. rubric:: Ejemplo 2: LED intermitente
+
+El LED permanece encendido un segundo y apagado otro segundo.
+
 .. code-block:: python
     
     from machine import Pin
@@ -88,10 +94,12 @@ LED intermitente
         led.off()
         time.sleep(1)
 
-El LED permanece encendido un segundo y apagado otro segundo.
 
-`sleep_ms()` y `sleep_us()`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----
+
+.. rubric:: Ejemplo 3: ``sleep_ms()`` y ``sleep_us()``
+
+
 - 1 segundo = 1.000 milisegundos.
 - 1 segundo = 1.000.000 microsegundos.
 
@@ -102,9 +110,12 @@ El LED permanece encendido un segundo y apagado otro segundo.
     time.sleep_ms(200)  # 0,2 segundos
     time.sleep_us(10)   # 10 microsegundos
 
+----
 
-Parpadeo rápido
-~~~~~~~~~~~~~~~~
+.. rubric:: Ejemplo 4: Parpadeo rápido
+
+El estado del LED cambia cada 200 ms; un ciclo completo dura aproximadamente 400 ms. La duración real de las pausas puede ser algo mayor por el tiempo de ejecución.
+
 .. code-block:: python
 
     from machine import Pin
@@ -118,11 +129,14 @@ Parpadeo rápido
         led.off()
         time.sleep_ms(200)
 
-El estado del LED cambia cada 200 ms; un ciclo completo dura aproximadamente 400 ms. La duración real de las pausas puede ser algo mayor por el tiempo de ejecución.
 
-`ticks_ms()` : medir intervalos
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-`ticks_ms()` proporciona un contador interno; **no indica la hora del día**.
+
+----
+
+.. rubric:: Ejemplo 4: ``ticks_ms()`` para medir intervalos
+
+
+``ticks_ms()`` proporciona un contador interno; **no indica la hora del día**. 
 
 .. code-block:: python
 
@@ -135,14 +149,15 @@ El estado del LED cambia cada 200 ms; un ciclo completo dura aproximadamente 400
     duracion = time.ticks_diff(final, inicio)
     print('Duración:', duracion, 'ms')
 
-
 El resultado será aproximadamente 2.000 ms.
 
 .. note:: **¿Por qué ticks_diff()?:** 
     Los contadores `ticks_ms()` pueden volver a cero al alcanzar su límite. `ticks_diff()` permite calcular diferencias correctamente dentro del intervalo admitido por el contador. Por eso es preferible a restar directamente dos lecturas.
 
-Parpadeo sin bloquear el programa
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----
+
+.. rubric:: Ejemplo 5: Parpadeo sin bloquear el programa
+
 .. code-block:: python
 
     from machine import Pin
