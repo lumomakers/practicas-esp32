@@ -132,7 +132,7 @@ La ESP32 trabaja con señales GPIO de **3,3 V**. Una tensión de alimentación d
 Ejemplos
 ----------
 
-.. rubric:: *Ejemplo 1*
+.. rubric:: Ejemplo 1: La primera nota (La4)
 
 El siguiente código hará sonar al buzzer durante 1 segundo y luego lo desactivará al encontrar la línea de código ``buzzer.deinit()``
 
@@ -156,3 +156,132 @@ El siguiente código hará sonar al buzzer durante 1 segundo y luego lo desactiv
    time.sleep(1)
    buzzer.deinit()  
 
+Mejoramos el código anterior:
+
+.. code-block:: python
+
+   from machine import Pin, PWM
+   from time import sleep
+
+   buzzer = PWM(Pin(17), freq=440, duty_u16=0)
+   buzzer.duty_u16(32768)  # Señal PWM ~50%
+   sleep(1)
+   buzzer.duty_u16(0)      # Dejamos la salida sin pulsos
+   buzzer.deinit()         # Liberamos el recurso PWM
+
+En este caso aprovechamos la declaración de la variable ``buzzer`` para indicar en la misma instrucción la frecuencia y asegurarnos que la salida no emite nigún pulso (``duty_u16=0``).
+
+.. note:: La frecuencia **440 Hz** corresponde a la nota **La4** (en afinación habitual). 
+
+.. rubric:: Ejemplo 2: Distintos tonos
+
+.. code-block:: python
+
+   from machine import Pin, PWM
+   from time import sleep
+
+   buzzer = PWM(Pin(17), freq = 500, duty_u16=0)
+
+   def pitido (frecuencia=1000, duracion=0.2):
+      buzzer.freq(frecuencia)
+      buzzer.duty_u16(32768)
+      sleep(duracion)
+      buzzer.duty_u16(0)
+
+   try:
+      pitido()	         # Llamada sin pasar datos
+      sleep(0.2)
+      pitido(500, 0.5) 	# Más grave
+      sleep(0.2)
+      pitido(2000, 0.1)	# Más agudo y corto
+   finally:
+      buzzer.deinit()
+
+
+Notas musicales y melodías
+---------------------------
+
+Frecuencias aproximadas de una escala
+=====================================
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 30
+
+   * - Nota
+     - Frecuencia
+   * - Do4
+     - 262 Hz
+   * - Re4
+     - 294 MHz
+   * - Mi4
+     - 330 Hz
+   * - Fa4
+     - 349 MHz
+   * - Sol4
+     - 392 Hz
+   * - La4
+     - 440 MHz
+   * - Si4
+     - 494 Hz
+   * - Do5
+     - 523 MHz
+
+Estas frecuencias están redondeadas a números enteros para facilitar la programación.
+
+.. rubric:: Escala musical
+
+.. code-block:: python
+
+   from machine import Pin, PWM
+   from time import sleep
+
+   buzzer = PWM(Pin(17), freq=440, duty_u16=0)
+
+   notas = [262, 294, 330, 349, 392, 440, 494, 523]
+
+   try:
+      for nota in notas:
+         buzzer.freq(nota)
+         buzzer.duty_u16(32768)
+         sleep(0.4)
+         buzzer.duty_u16(0)
+         sleep(0.1)
+   finally:
+      buzzer.deinit()
+
+El programa recorre una **lista de frecuencias**. Cada nota dura 0,4 segundos y queda separada por un silencia de 0,1 segundos.
+
+.. rubric:: Notas almacenadas en un diccionario
+
+.. code-block:: python
+   from machine import Pin, PWM
+   from time import sleep
+
+   buzzer = PWM(Pin(17), freq=440, duty_u16=0)
+
+   notas = {
+      "DO": 262,
+      "RE": 294,
+      "MI": 330,
+      "FA": 349,
+      "SOL": 392,
+      "LA": 440,
+      "SI": 494,
+      "DO5": 523,
+   }
+
+   def tocar(frecuencia, duracion):
+      buzzer.freq(frecuencia)
+      buzzer.duty_u16(32768)
+      sleep(duracion)
+      buzzer.duty_u16(0)
+      sleep(0.1)
+
+   try:
+      for nombre, frecuencia in notas.items():
+         print("Nota:", nombre)
+         tocar(frecuencia, 0.4)
+   finally:
+      buzzer.deinit()
+
+En este ejemplo usamos un **diccionario** de manera que cada nombre de nota se asocia a su frecuencia. El método ``.items()`` permite recorrer los elementos del diccionario.

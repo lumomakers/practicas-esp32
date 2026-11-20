@@ -21,7 +21,7 @@ Prácticas con ESP32
    capitulo4
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    :caption: Apéndices:
 
    Módulo Machine <apendice1>
