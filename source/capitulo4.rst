@@ -128,3 +128,31 @@ La ESP32 trabaja con señales GPIO de **3,3 V**. Una tensión de alimentación d
 #. Unir las masas (**GND**) del controlador y de la alimentación del actuador, cuando se utilice una etapa de control externa.
 #. Verificar las patas **B**, **C** y **E** del transistor concreto: su disposición física depende de la referencia y del encapsulado.
 #. No presuponer que el conector de 5 V de la placa puede alimentar cualquier carga; comprobar su capacidad de corriente y la fuente utilizada.
+
+Ejemplos
+----------
+
+.. rubric:: *Ejemplo 1*
+
+El siguiente código hará sonar al buzzer durante 1 segundo y luego lo desactivará al encontrar la línea de código ``buzzer.deinit()``
+
+.. container:: imagen-separada
+
+    .. image:: /_static/capitulo4/circuito_buzzer_01.png
+        :alt: Detalle de la placa
+        :align: center
+        :width: 90%
+      
+
+
+.. code-block:: python
+
+   from machine import Pin, PWM
+   import time
+
+   buzzer = PWM(Pin(17))
+   buzzer.freq(440)          # 440 Hz
+   buzzer.duty_u16(32768)   # Aproximadamente un 50 %
+   time.sleep(1)
+   buzzer.deinit()  
+

@@ -76,7 +76,7 @@ Recuerda que ``duty_u16()`` acepta valores comprendidos entre **0 y 65535**. Apr
    :header-rows: 1
    :widths: 30 30
 
-   *  - duty_u16()
+   *  - ``duty_u16()``
       - Ciclo de trabajo
    *  - 0
       - 0%
