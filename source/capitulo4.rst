@@ -254,6 +254,7 @@ El programa recorre una **lista de frecuencias**. Cada nota dura 0,4 segundos y 
 .. rubric:: Notas almacenadas en un diccionario
 
 .. code-block:: python
+   
    from machine import Pin, PWM
    from time import sleep
 
