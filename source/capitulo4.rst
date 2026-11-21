@@ -203,86 +203,225 @@ Notas musicales y melodías
 
 Frecuencias aproximadas de una escala
 =====================================
+Si buscas en la red observarás códigos que usan nomenclaturas del tipo **E5**, **C4**, etc. Estas etiquetas del tipo **E5** o **F5** usan el sistema de cifrado inglés (o anglosajón) acompañado del número de octava, que indica qué tan grave o aguda suena la nota.
+
+Equivalencia de las letras (Cifrado inglés)
+============================================
+El cifrado inglés asigna las primeras siete letras del abecedario empezando por la nota **La**:
+
 .. list-table:: 
    :header-rows: 1
    :widths: 30 30
 
-   * - Nota
-     - Frecuencia
-   * - Do4
-     - 262 Hz
-   * - Re4
-     - 294 MHz
-   * - Mi4
-     - 330 Hz
-   * - Fa4
-     - 349 MHz
-   * - Sol4
-     - 392 Hz
-   * - La4
-     - 440 MHz
-   * - Si4
-     - 494 Hz
-   * - Do5
-     - 523 MHz
+   * - Cifrado inglés
+     - Nota tradicional
+   * - C
+     - Do
+   * - D
+     - Re
+   * - E
+     - Mi
+   * - F
+     - Fa
+   * - G
+     - Sol
+   * - A
+     - La
+   * - B
+     - Si
 
-Estas frecuencias están redondeadas a números enteros para facilitar la programación.
+Si aparece una almohadilla (``#``) o una ``b``, indica alteraciones: por ejemplo, **C#** es **Do sostenido** y **Bb** es **Si bemol**
 
-.. rubric:: Escala musical
+¿Qué significa el número (octava)?
+============================================
+El número indica la **altura** (lo grave o aguda que debe ser la nota):
 
-.. code-block:: python
+* **Números bajos (2,3):** notas graves (como el bajo de una canción)
+* **Número 4 (C4, D4, E4...):** es la **octava central** del piano (donde está el *Do central*)
+* **Número 5 (C5, D5, E5...):** una octava más aguda que la central; suele usarse en buzzers porque suena más nítida y con mejor volumen.
 
-   from machine import Pin, PWM
-   from time import sleep
+Por ejemplo:
 
-   buzzer = PWM(Pin(17), freq=440, duty_u16=0)
+* **E5** = **Mi** de la quinta octava (659 Hz)
+* **F5** = **Fa** de la quinta octava (698 Hz)
 
-   notas = [262, 294, 330, 349, 392, 440, 494, 523]
-
-   try:
-      for nota in notas:
-         buzzer.freq(nota)
-         buzzer.duty_u16(32768)
-         sleep(0.4)
-         buzzer.duty_u16(0)
-         sleep(0.1)
-   finally:
-      buzzer.deinit()
-
-El programa recorre una **lista de frecuencias**. Cada nota dura 0,4 segundos y queda separada por un silencia de 0,1 segundos.
-
-.. rubric:: Notas almacenadas en un diccionario
+¿Cómo usar nombres tradicionales en nuestro código?
+======================================================
+Lo ideal es tener en un diccionario las *claves* (notas) y sus *valores* (frecuencias) para escribir las melodías directamente como ``DO5``, ``RE5``, ``MI5``:
 
 .. code-block:: python
 
-   from machine import Pin, PWM
-   from time import sleep
-
-   buzzer = PWM(Pin(17), freq=440, duty_u16=0)
-
-   notas = {
-      "DO": 262,
-      "RE": 294,
-      "MI": 330,
-      "FA": 349,
-      "SOL": 392,
-      "LA": 440,
-      "SI": 494,
+   NOTAS = {
       "DO5": 523,
+      "RE5": 587,
+      "MI5": 659,
+      "FA5": 698,
+      "SOL5": 784,
+      "LA5": 880,
+      "SI5": 988,
+      "SILENCIO": 0,
    }
 
-   def tocar(frecuencia, duracion):
-      buzzer.freq(frecuencia)
-      buzzer.duty_u16(32768)
-      sleep(duracion)
-      buzzer.duty_u16(0)
-      sleep(0.1)
+Tabla de frecuencias (Octavas 3 a 6)
+======================================
+A continuación tenemos la **tabla de frecuencias (en Hz)** de la 3ª a la 6ª octava (incluyendo sostenidos ``#``).
 
-   try:
-      for nombre, frecuencia in notas.items():
-         print("Nota:", nombre)
-         tocar(frecuencia, 0.4)
-   finally:
-      buzzer.deinit()
+En un buzzer pasivo, las octavas **4**, **5**, y **6** son las que mejor suenan; la octava 3 es grave y puede escucharse más baja según el modelo de buzzer.
 
-En este ejemplo usamos un **diccionario** de manera que cada nombre de nota se asocia a su frecuencia. El método ``.items()`` permite recorrer los elementos del diccionario.
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 30 30 30 30 30
+
+   * - Nota tradicional
+     - Cifrado
+     - Octava 3
+     - Octava 4 (central)
+     - Octava 5
+     - Octava 6
+   * - **Do**
+     - C
+     - 131
+     - 262
+     - 523
+     - 1047
+   * - **Do#**
+     - C#
+     - 139
+     - 277
+     - 554
+     - 1109
+   * - **Re**
+     - D
+     - 147
+     - 294
+     - 587
+     - 1175
+   * - **Re#**
+     - D#
+     - 156
+     - 311
+     - 622
+     - 1245
+   * - **Mi**
+     - E
+     - 165
+     - 330
+     - 659
+     - 1319
+   * - **Fa**
+     - F
+     - 175
+     - 349
+     - 698
+     - 1397
+   * - **Fa#**
+     - F#
+     - 185
+     - 370
+     - 740
+     - 1480
+   * - **Sol**
+     - G
+     - 196
+     - 392
+     - 784
+     - 1568
+   * - **Sol#**
+     - G#
+     - 208
+     - 415
+     - 831
+     - 1661
+   * - **La**
+     - A
+     - 220
+     - 440
+     - 880
+     - 1760
+   * - **La#**
+     - A#
+     - 233
+     - 466
+     - 932
+     - 1865
+   * - **Si**
+     - B
+     - 247
+     - 494
+     - 988
+     - 1976
+
+.. note:: Los bemoles equivalen al sostenido de la nota anterior; por ejemplo **Sib** = **La#**
+
+Diccionario completo para tus programas en MicroPython
+=======================================================
+
+Puedes guardar el siguiente bloque en un archivo llamado ``notas.py`` en el ESP32 e importarlo en los proyectos futuros, o **pegarlo directamente en el inicio del script** con las notas que vayas a usar en tu melodía, tal y como te muestro en el ejemplo de la entrada de **Mario Bros**:
+
+.. code-block:: python
+
+   NOTAS = {
+    # Octava 3
+    "DO3": 131, "DO#3": 139, "RE3": 147, "RE#3": 156, "MI3": 165, "FA3": 175,
+    "FA#3": 185, "SOL3": 196, "SOL#3": 208, "LA3": 220, "LA#3": 233, "SI3": 247,
+
+    # Octava 4 (Central)
+    "DO4": 262, "DO#4": 277, "RE4": 294, "RE#4": 311, "MI4": 330, "FA4": 349,
+    "FA#4": 370, "SOL4": 392, "SOL#4": 415, "LA4": 440, "LA#4": 466, "SI4": 494,
+
+    # Octava 5
+    "DO5": 523, "DO#5": 554, "RE5": 587, "RE#5": 622, "MI5": 659, "FA5": 698,
+    "FA#5": 740, "SOL5": 784, "SOL#5": 831, "LA5": 880, "LA#5": 932, "SI5": 988,
+
+    # Octava 6
+    "DO6": 1047, "DO#6": 1109, "RE6": 1175, "RE#6": 1245, "MI6": 1319, "FA6": 1397,
+    "FA#6": 1480, "SOL6": 1568, "SOL#6": 1661, "LA6": 1760, "LA#6": 1865, "SI6": 1976,
+
+    # Pausa
+    "SILENCIO": 0
+   }
+
+
+.. rubric:: Mario Bros
+
+.. code-block:: python
+
+   import time
+   from machine import Pin, PWM
+
+   buzzer = PWM(Pin(17))
+
+   # Diccionario con las notas exactas de la intro de Mario Bros
+   NOTAS = {
+      "SOL4": 392,
+      "DO5": 523,
+      "MI5": 659,
+      "SOL5": 784,
+      "SILENCIO": 0,
+   }
+
+   # Melodía: (Nota, duración en ms)
+   mario_bros = [
+      # Intro clásica
+      ("MI5", 125), ("MI5", 125), ("SILENCIO", 125), ("MI5", 125),
+      ("SILENCIO", 125), ("DO5", 125), ("MI5", 250),
+      ("SOL5", 250), ("SILENCIO", 250), ("SOL4", 250), ("SILENCIO", 250),
+   ]
+
+   def tocar_nota(freq, duracion_ms):
+      if freq == 0:
+         buzzer.duty_u16(0)
+         time.sleep_ms(duracion_ms)
+      else:
+         buzzer.freq(freq)
+         buzzer.duty_u16(32768)
+         time.sleep_ms(duracion_ms)
+         buzzer.duty_u16(0)
+         time.sleep_ms(20)  # Pausa muy corta para mantener el ritmo rápido de Mario
+
+   for nota, duracion in mario_bros:
+      tocar_nota(NOTAS[nota], duracion)
+
+   buzzer.deinit()
+
